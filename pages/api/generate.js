@@ -35,7 +35,7 @@ export default async function handler(req, res) {
 
         try {
           const stream = await openai.beta.chat.completions.stream({
-            model: "gpt-4o-2024-05-13",
+            model: "gpt-4o-mini",
             messages: chatHistory,
             stream: true,
           });
