@@ -146,7 +146,7 @@ export default function Home() {
         ))}
       </div>
 
-     <div className={styles.verticalButtonsContainer}>
+  <div className={styles.verticalButtonsContainer}>
   <button
     className={`${styles.button} ${styles.complexityButton}`}
     onClick={() => handleComplexityInput(Complexity.EASY)}
@@ -171,7 +171,8 @@ export default function Home() {
   >
     Clear
   </button>
-      </div>
+</div>
+
 
     </div>
   );
