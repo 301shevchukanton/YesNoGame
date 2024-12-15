@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 export default function Home() {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([
-    { role: "system", content: "You are a helpful assistant." },
+    { role: "system", content: "Do you want a new situation?" },
   ]);
   const chatContainerRef = useRef(null);
 
