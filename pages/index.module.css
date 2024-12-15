@@ -1,3 +1,4 @@
+/* Font face for ColfaxAI */
 @font-face {
   font-family: "ColfaxAI";
   src:
@@ -16,148 +17,127 @@
   font-style: normal;
 }
 
-.body,
-.input {
-  font-size: 16px;
-  line-height: 24px;
-  color: #353740;
-  font-family: "ColfaxAI", Helvetica, sans-serif;
-}
+/* Global styles */
 
-.body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 60px;
-}
-
-.icon {
-  width: 34px;
-}
-
-.h3 {
-  font-size: 32px;
-  line-height: 40px;
+.heading1 {
+  font-size: 2.5rem; /* Larger text for prominence */
+  text-align: center;
+  margin: 20px 0;
   font-weight: bold;
   color: #202123;
-  margin: 16px 0 40px;
+  text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1); /* Add text shadow */
 }
 
+/* Chat container */
 .chatContainer {
   max-width: 600px;
-  width: 100%;
-  margin: 0 auto;
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 160px;
-  margin-bottom: 20px;
-  overflow: auto;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Floating effect */
+  background-color: #ffffff;
+  overflow-y: auto;
+  max-height: 70vh;
 }
 
 .userMessage,
 .assistantMessage {
   padding: 12px 16px;
-  border: 1px solid #10a37f;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  max-width: 80%;
+  margin-bottom: 12px;
+  border-radius: 10px;
   word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease; /* Fade-in animation for messages */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .userMessage {
   align-self: flex-end;
   background-color: #daf8e3;
+  box-shadow: 0 2px 6px rgba(16, 163, 127, 0.3); /* Add shadow for depth */
 }
 
 .assistantMessage {
   align-self: flex-start;
   background-color: #f1f1f1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.messageInputContainer {
+/* Buttons container */
+/* Buttons Container */
+.verticalButtonsContainer {
   position: fixed;
   bottom: 0;
-  left: 0;
   right: 0;
-  padding: 20px;
-  background: #fff;
+  left: 0;
+  display: flex;
+  flex-direction: column; /* Vertical alignment */
+  align-items: center; /* Center horizontally */
+  padding: 15px 0;
+  background-color: #ffffff; /* Clean white background */
   border-top: 1px solid #eaeaea;
-  display: flex;
-  justify-content: center;
-  height: auto;
-  padding-bottom: 20px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  z-index: 10; /* Ensure buttons stay above other content */
 }
 
-.heading1 {
-  text-align: center; /* Centers text horizontally */
-  width: 100%; /* Ensures the heading takes full width of its container */
-  margin: 0 auto; /* Applies automatic horizontal margins */
-}
-
-.form {
-  max-width: 600px;
-  width: 100%;
-  margin: 0 auto;
-  flex-direction: column;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.textarea {
-  padding: 12px 16px;
-  border: 1px solid #10a37f;
-  border-radius: 4px;
-  margin-bottom: 24px;
-  width: 100%;
-  min-height: 50px;
-  resize: both;
-  overflow: auto;
-  margin-right: 4px;
-  flex: 3;
-}
-
-.buttonGroup {
-  display: flex;
-}
-
-.inputSubmit,
-.inputButton {
-  padding: 12px 16px;
-  color: #fff;
-  background-color: #10a37f;
-  border: none;
-  border-radius: 4px;
+/* General Button Style */
+.complexityButton,
+.clearButton {
+  padding: 14px 20px;
+  margin: 10px 0; /* Add spacing between buttons */
+  width: 90%; /* Make the buttons take up most of the screen width */
+  max-width: 300px; /* Set a max width for larger screens */
   text-align: center;
-  cursor: pointer;
-  flex: 1;
-  margin: 0 2px;
-}
-
-.inputSubmit {
-  flex-grow: 4;
-}
-
-.inputButton {
-  flex-grow: 1;
-  background-color: #f44336;
-}
-
-.inputText {
-  padding: 12px 16px;
-  border: 1px solid #10a37f;
-  border-radius: 4px;
-  margin-bottom: 24px;
-}
-
-.placeholder {
-  color: #8e8ea0;
-  opacity: 1;
-}
-
-.result {
+  font-size: 16px;
   font-weight: bold;
-  margin-top: 40px;
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 25px; /* Rounded corners for modern look */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effects */
 }
+
+/* Complexity Button - Green Gradient */
+.complexityButton {
+  background: linear-gradient(to right, #10a37f, #0d8c6e); /* Subtle gradient */
+  box-shadow: 0 4px 6px rgba(16, 163, 127, 0.2); /* Button shadow */
+}
+
+.complexityButton:hover {
+  transform: translateY(-2px); /* Button lifts slightly */
+  box-shadow: 0 8px 12px rgba(16, 163, 127, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Clear Button - Red Gradient */
+.clearButton {
+  background: linear-gradient(to right, #f44336, #e53935); /* Red gradient */
+  box-shadow: 0 4px 6px rgba(244, 67, 54, 0.2); /* Button shadow */
+}
+
+.clearButton:hover {
+  transform: translateY(-2px); /* Button lifts slightly */
+  box-shadow: 0 8px 12px rgba(244, 67, 54, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .complexityButton,
+  .clearButton {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 12px 16px; /* Reduce padding on smaller devices */
+    max-width: 90%; /* Use most of the screen width */
+  }
+}
+

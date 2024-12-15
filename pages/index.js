@@ -115,6 +115,17 @@ export default function Home() {
     <div>
       <Head>
         <title>Yes/No Game generator</title>
+         <style jsx global>{`
+    body {
+      background: linear-gradient(to bottom, #f7f8fa, #ffffff);
+      font-size: 16px;
+      line-height: 24px;
+      color: #353740;
+      font-family: "ColfaxAI", Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+  `}</style>
       </Head>
       <h1 className={styles.heading1}>Yes/No Game generator</h1>
       <div className={styles.chatContainer} ref={chatContainerRef}>
@@ -125,34 +136,41 @@ export default function Home() {
               msg.role === "user" ? styles.userMessage : styles.assistantMessage
             }
           >
-            {msg.content}
+            {msg.role === "user" ? (
+              <strong>Наступна:</strong>
+            ) : (
+              <strong>Генератор:</strong>
+            )}
+            <p>{msg.content}</p>
           </div>
         ))}
       </div>
-      <div className={styles.messageInputContainer}>
-        <form onSubmit={onSubmitEasy}>
-          <div className={styles.buttonGroup}>
-            <input className={styles.inputSubmit} type="submit" value="New puzle - Easy" />
-          </div>
-        </form>
-        <form onSubmit={onSubmitMedium}>
-          <div className={styles.buttonGroup}>
-            <input className={styles.inputSubmit} type="submit" value="New puzle - Medium" />
-          </div>
-        </form>
-        <form onSubmit={onSubmitHard}>
-          <div className={styles.buttonGroup}>
-            <input className={styles.inputSubmit} type="submit" value="New puzle - Hard" />
-          </div>
 
-        </form>
-         <button
-              className={styles.inputButton}
-              type="button"
-              onClick={clearChat}
-            >
-              Clear
-            </button>
+     <div className={styles.verticalButtonsContainer}>
+  <button
+    className={`${styles.button} ${styles.complexityButton}`}
+    onClick={() => handleComplexityInput(Complexity.EASY)}
+  >
+    New Puzzle - Easy
+  </button>
+  <button
+    className={`${styles.button} ${styles.complexityButton}`}
+    onClick={() => handleComplexityInput(Complexity.MEDIUM)}
+  >
+    New Puzzle - Medium
+  </button>
+  <button
+    className={`${styles.button} ${styles.complexityButton}`}
+    onClick={() => handleComplexityInput(Complexity.HARD)}
+  >
+    New Puzzle - Hard
+  </button>
+  <button
+    className={`${styles.button} ${styles.clearButton}`}
+    onClick={clearChat}
+  >
+    Clear
+  </button>
       </div>
 
     </div>

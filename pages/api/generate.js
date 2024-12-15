@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI();
 
-let chatHistory = [{ role: "system", content: "You are a helpful assistant." }];
+let chatHistory = [{ role: "system", content: "Do you want a new situation?" }];
 
 export default async function handler(req, res) {
   const { method } = req;
