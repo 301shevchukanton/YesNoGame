@@ -141,8 +141,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Floating effect */
   background-color: #ffffff;
   overflow-y: auto;
-  max-height: calc(100vh - 220px); /* Adjust height to accommodate buttons */
-  padding-bottom: 120px; /* Add padding to prevent content from being hidden */
+  max-height: calc(100vh - 320px); /* Adjust height to accommodate buttons */
 }
 
 /* Responsive Adjustments */
