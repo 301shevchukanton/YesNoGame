@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       } else if (req.query.endpoint === "reset") {
         // Handle POST to /api/generate?endpoint=reset
         chatHistory = [
-          { role: "system", content: "You are a helpful assistant." },
+          { role: "system", content: "Do you want a new situation?" },
         ];
         res.status(200).json({ success: true });
       } else {

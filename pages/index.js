@@ -17,9 +17,10 @@ export default function Home() {
     }
   }, [chatHistory]);
 
-  const sendMessage = async (message) => {
+  const sendMessage = async (complexity) => {
     // Append user message to chat history
-    setChatHistory((prev) => [...prev, { role: "user", content: "Нова ситуація" }]);
+    const message = `сформувати ситуаційну головоломку ${complexity} складності з відповіддю яка б була повністю логічна в теперешній час. Текст має читатись легко і бути високої якості. Надайте вихідні дані у форматі: \nСитуація: {ситуація з нового рядка} \n\nВідповідь: {відповідь}`;
+    setChatHistory((prev) => [...prev, { role: "user", content: `Нова ситуація - ${complexity} складності` }]);
 
     // Send the user's message to the server
     const response = await fetch("/api/generate?endpoint=chat", {
@@ -69,11 +70,38 @@ export default function Home() {
     // Reset the chat history on the server
     await fetch("/api/generate?endpoint=reset", { method: "POST" });
   };
+  
+  const Complexity = {
+  EASY: "легкої",
+  MEDIUM: "середньої",
+  HARD: "складної",
+  };
 
-  const onSubmit = (event) => {
+  function handleComplexityInput(complexity) {
+  // Check if the provided complexity is valid
+    if (!Object.values(Complexity).includes(complexity)) {
+      console.error("Invalid complexity level provided.");
+      return;
+    }
+
+    // Prevent the default form submission or action
     event.preventDefault();
-    sendMessage("сформувати ситуаційну головоломку важкої складності з відповіддю яка б була повністю логічна в теперешній час. Текст має читатись легко і бути високої якості. Надайте вихідні дані у форматі: \nСитуація: {ситуація з нового рядка} {новий рядок} \nВідповідь: {відповідь}");
+  
+    // Send the message
+    sendMessage(complexity);
+
+    // Clear the message input or any related field
     setMessage("");
+}
+
+  const onSubmitEasy = (event) => {
+   handleComplexityInput(Complexity.EASY);
+  };
+  const onSubmitMedium = (event) => {
+   handleComplexityInput(Complexity.MEDIUM);
+  };
+  const onSubmitHard = (event) => {
+   handleComplexityInput(Complexity.HARD);
   };
 
   return (
@@ -95,19 +123,31 @@ export default function Home() {
         ))}
       </div>
       <div className={styles.messageInputContainer}>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmitEasy}>
           <div className={styles.buttonGroup}>
-            <input className={styles.inputSubmit} type="submit" value="New puzle" />
-            <button
+            <input className={styles.inputSubmit} type="submit" value="New puzle - Easy" />
+          </div>
+        </form>
+        <form onSubmit={onSubmitMedium}>
+          <div className={styles.buttonGroup}>
+            <input className={styles.inputSubmit} type="submit" value="New puzle - Medium" />
+          </div>
+        </form>
+        <form onSubmit={onSubmitHard}>
+          <div className={styles.buttonGroup}>
+            <input className={styles.inputSubmit} type="submit" value="New puzle - Hard" />
+          </div>
+
+        </form>
+         <button
               className={styles.inputButton}
               type="button"
               onClick={clearChat}
             >
               Clear
             </button>
-          </div>
-        </form>
       </div>
+
     </div>
   );
 }
