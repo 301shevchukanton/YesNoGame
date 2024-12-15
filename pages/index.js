@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 export default function Home() {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([
-    { role: "system", content: "You are a helpful assistant." },
+    { role: "system", content: "Do you want a new situation?" },
   ]);
   const chatContainerRef = useRef(null);
 
@@ -79,9 +79,9 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>OpenAI Chat</title>
+        <title>Yes/No Game generator</title>
       </Head>
-      <h1 className={styles.heading1}>OpenAI Chat Completion Quickstart</h1>
+      <h1 className={styles.heading1}>Yes/No Game generator</h1>
       <div className={styles.chatContainer} ref={chatContainerRef}>
         {chatHistory.map((msg, index) => (
           <div
