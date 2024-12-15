@@ -87,7 +87,7 @@ export default function Home() {
   function handleComplexityInput(complexity) {
   // Check if the provided complexity is valid
     if (!Object.values(Complexity).includes(complexity)) {
-      console.error("Invalid complexity level provided.");
+      console.error("Invalid complexity level provided");
       return;
     }
 
