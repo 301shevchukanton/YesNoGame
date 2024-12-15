@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI();
 
-let chatHistory = [{ role: "system", content: "Do you want a new situation?" }];
+let chatHistory = [{ role: "system", content: "You are a helpful assistant that generates logical and intriguing situational puzzles." }];
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       } else if (req.query.endpoint === "reset") {
         // Handle POST to /api/generate?endpoint=reset
         chatHistory = [
-          { role: "system", content: "Do you want a new situation?" },
+          { role: "system", content: "You are a helpful assistant that generates logical and intriguing situational puzzles." },
         ];
         res.status(200).json({ success: true });
       } else {
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
 
         try {
           const stream = await openai.beta.chat.completions.stream({
-            model: "ft:gpt-4o-mini-2024-07-18:personal:yes-no-game:AenIyBdB",
+            model: "gpt-4o-mini",
             messages: chatHistory,
             stream: true,
           });
