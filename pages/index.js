@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 export default function Home() {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([
-    { role: "system", content: "Do you want a new situation?" },
+    { role: "system", content: "You are a helpful assistant that generates logical and intriguing situational puzzles." },
   ]);
   const chatContainerRef = useRef(null);
 
@@ -19,14 +19,7 @@ export default function Home() {
 
   const sendMessage = async (complexity) => {
     // Append user message to chat history
-    const message = `Сформуй ситуаційну головоломку складності ${complexity} для гри "Так/Ні". Текст має бути логічним, інтригуючим і читатися легко. Відповідь повинна бути нестандартною, але повністю логічною, щоб учасники могли дійти до неї через запитання "так/ні". Формат: 
-Ситуація: [текст ситуації, що викликає здивування або цікавість].  
-Відповідь: [логічне пояснення ситуації]. 
-
-Приклад:  
-Ситуація: Чоловік зайшов у кафе, замовив склянку води і несподівано отримав постріл у груди.  
-Відповідь: Чоловік заїкався. Він попросив склянку води, щоб впоратися з заїканням, але бармен вирішив допомогти іншою методою – налякати його пострілом (він стріляв холостими).
-`;
+    const message = `Сформуй ситуаційну головоломку складності ${complexity} для гри \"Так/Ні\". Текст має бути логічним, інтригуючим і читатися легко. Відповідь повинна бути нестандартною, але повністю логічною, щоб учасники могли дійти до неї через запитання \"так/ні\". Формат: \nСитуація: [текст ситуації, що викликає здивування або цікавість].\n\nВідповідь: [логічне пояснення ситуації].`;
     setChatHistory((prev) => [...prev, { role: "user", content: `Нова ситуація - ${complexity} складності` }]);
 
     // Send the user's message to the server
@@ -79,9 +72,9 @@ export default function Home() {
   };
   
   const Complexity = {
-  EASY: "легкої",
-  MEDIUM: "середньої",
-  HARD: "складної",
+  EASY: "Легко",
+  MEDIUM: "Середньо",
+  HARD: "Складно",
   };
 
   function handleComplexityInput(complexity) {
