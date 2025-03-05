@@ -17,9 +17,8 @@
   font-style: normal;
 }
 
-/* Global styles */
-body {
-  background: linear-gradient(135deg, #f0f4f8, #e6f7ff);
+/* Global styles - moved to inline styles in Head component */
+.container {
   min-height: 100vh;
 }
 
@@ -107,6 +106,60 @@ body {
   opacity: 0.8;
 }
 
+/* Message content styling */
+.messageContent {
+  width: 100%;
+}
+
+.puzzleSection {
+  margin-bottom: 12px;
+}
+
+.solutionSection {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 12px;
+}
+
+/* Loading indicator */
+.loadingIndicator {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #10a37f;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: dotPulse 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 /* Buttons container */
 .verticalButtonsContainer {
   position: fixed;
@@ -158,30 +211,39 @@ body {
   transform: translateX(0);
 }
 
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.button:disabled::after {
+  display: none;
+}
+
 /* Complexity Buttons */
 .complexityButton {
   background: linear-gradient(45deg, #10a37f, #08a08a);
   box-shadow: 0 6px 15px rgba(16, 163, 127, 0.25);
 }
 
-.complexityButton:nth-child(1) {
+.complexityButton:nth-of-type(1) {
   background: linear-gradient(45deg, #10a37f, #3dd598);
 }
 
-.complexityButton:nth-child(2) {
+.complexityButton:nth-of-type(2) {
   background: linear-gradient(45deg, #10a37f, #209d8a);
 }
 
-.complexityButton:nth-child(3) {
+.complexityButton:nth-of-type(3) {
   background: linear-gradient(45deg, #0d8c6e, #06725a);
 }
 
-.complexityButton:hover {
+.complexityButton:hover:not(:disabled) {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(16, 163, 127, 0.35);
 }
 
-.complexityButton:active {
+.complexityButton:active:not(:disabled) {
   transform: translateY(1px);
   box-shadow: 0 4px 8px rgba(16, 163, 127, 0.25);
 }
@@ -192,12 +254,12 @@ body {
   box-shadow: 0 6px 15px rgba(244, 67, 54, 0.25);
 }
 
-.clearButton:hover {
+.clearButton:hover:not(:disabled) {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(244, 67, 54, 0.35);
 }
 
-.clearButton:active {
+.clearButton:active:not(:disabled) {
   transform: translateY(1px);
   box-shadow: 0 4px 8px rgba(244, 67, 54, 0.25);
 }
