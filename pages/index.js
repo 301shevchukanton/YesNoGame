@@ -175,26 +175,32 @@ export default function Home() {
         <h1 className={styles.heading1}>Yes/No Game Generator</h1>
         
         <div className={styles.chatContainer} ref={chatContainerRef}>
-          {chatHistory.map((msg, index) => (
-            <div
-              key={index}
-              className={
-                msg.role === "user" ? styles.userMessage : styles.assistantMessage
-              }
-            >
-              {msg.role === "user" ? (
-                <strong>Наступна:</strong>
-              ) : (
-                <strong>Генератор:</strong>
-              )}
-              <div className={styles.messageContent}>
-                {msg.role === "assistant" 
-                  ? formatPuzzleContent(msg.content)
-                  : <p>{msg.content}</p>
+          {chatHistory.length > 1 ? (
+            chatHistory.slice(1).map((msg, index) => (
+              <div
+                key={index}
+                className={
+                  msg.role === "user" ? styles.userMessage : styles.assistantMessage
                 }
+              >
+                {msg.role === "user" ? (
+                  <strong>Наступна:</strong>
+                ) : (
+                  <strong>Генератор:</strong>
+                )}
+                <div className={styles.messageContent}>
+                  {msg.role === "assistant" 
+                    ? formatPuzzleContent(msg.content)
+                    : <p>{msg.content}</p>
+                  }
+                </div>
               </div>
+            ))
+          ) : (
+            <div className={styles.emptyState}>
+              Click a button below to generate your first puzzle!
             </div>
-          ))}
+          )}
           
           {loading && (
             <div className={styles.loadingIndicator}>
